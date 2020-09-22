@@ -11,10 +11,13 @@ export default new Vuex.Store({
       {userId: 'lego123', password: '789', name: 'Lego', address: 'Busan', src:'https://goo.gl/x7SpCD'}
     ]
   },
-  getters:{ 
+  getters:{ // computed, 변수/함수 선언같음
     allUsersCount: state => {
       return state.allUsers.length
     },
+    // allUsersCount: function(state){
+    //   return state.allUsers.length
+    // }
     countOfSeoul: state => {
       let count = 0
       state.allUsers.forEach(user =>{
@@ -31,8 +34,12 @@ export default new Vuex.Store({
       state.allUsers.push(payload)
     }
   },
-  actions: {   
-    addUsers: ({commit}, payload )=>{ 
+  actions: {
+    // addUsers: context => {
+    //   context.commit('addUsers')
+    // }
+    //context 대신 commit 
+    addUsers: ({commit}, payload )=>{ //= function({commit})
       commit('addUsers', payload)
     }
   }
