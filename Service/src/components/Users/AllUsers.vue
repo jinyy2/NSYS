@@ -1,8 +1,13 @@
 <template>
   <div>
+    <h1>All Users({{$store.getters.allUsersCount}})</h1>
+    <h1>countOfSeoul({{$store.getters.countOfSeoul}})</h1>
+    <h1>percentOferSeoul({{$store.getters.percentOfSeoul}} %)</h1>
+    <!-- mapGetters -->
     <h1>All Users({{count}})</h1> 
     <h1>countOfSeoul({{seouls}})</h1>
     <h1>percentOferSeoul({{percent}} %)</h1>
+    
     
     <v-list two-line>
       <v-list-tile 
@@ -25,6 +30,7 @@
 </template>
 
 <script>
+import { EventBus } from '@/main.js'
 import { mapState, mapGetters } from 'vuex'
 
   export default {
@@ -40,6 +46,7 @@ import { mapState, mapGetters } from 'vuex'
           percent : 'percentOfSeoul'
         }        
       ),
+      //...mapGetters(['allUsersCount','countOfSeoul','percentOfSeoul'])
       ...mapState(['allUsers'])
    },
     mounted() {
