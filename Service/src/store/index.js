@@ -6,7 +6,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    SERVER_URL: "http://localhost:8080", // 차후 aws로 바꿔야함
+    // SERVER_URL: "http://localhost:8080", // 차후 aws로 바꿔야함
+    SERVER_URL: "https://j3b201.p.ssafy.io:8443", // 차후 aws로 바꿔야함
     poses: ["ready", "body", "bowling", "boxing","hurryup","kick","kungfu","leesin","shoot","ski"], // poseList - 디비에 넣을지 고민중
     currentPose: "ready", // default pose,
     bar: "내가 승리한 것이지 인간이 승리한 것이 아니야",
@@ -23,9 +24,11 @@ export default new Vuex.Store({
   },
   actions: {
     login: (context, loginData) => {
+      console.log(this.state.SERVER_URL)
       console.log("store login " + loginData.uid + " " + loginData.upw);
       axios
-        .post("http://localhost:8080/Userinfo/login", loginData)
+        // .post("http://localhost:8080/Userinfo/login", loginData)
+         .post(this.state.SERVER_URL, loginData)
         .then(({ data }) => {
           console.log(data);
           if (data.Userinfo != null) {
@@ -46,7 +49,8 @@ export default new Vuex.Store({
     join: (context, joinData) => {
       console.log("store join : " + joinData.uid);
       axios
-        .post("http://localhost:8080/Userinfo/join", joinData)
+        // .post("http://localhost:8080/Userinfo/join", joinData)
+        .post(this.state.SERVER_URL, joinData)
         .then(({ data }) => {
           console.log(data);
           console.log(data.Userinfo);
