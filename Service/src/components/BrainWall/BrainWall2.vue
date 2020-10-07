@@ -1,5 +1,6 @@
 <template>
   <div style="display: block; position: relative; margin: 10px; margin-top: 2%">
+    <buttion @click="test"></buttion>
     <v-card class="item" style="float: left ;
      margin-left: 5%;  width: 40%; ">
       <div>
@@ -58,7 +59,11 @@
 }
 
 </style>
+<script>
 
+
+
+</script>
 <script>
 import "@tensorflow/tfjs";
 import RandomPose from "@/components/BrainWall/RandomPose";
@@ -69,7 +74,7 @@ const socket = io('https://j3b201.p.ssafy.io:3000' ,
     { secure: true, reconnect: true, rejectUnauthorized : false });
 // Vue.prototype.$socket= socket;
 let model, labelContainer, maxPredictions;
-
+const { exec } = require('child_process');
 const mediaOption = {
   // audio: true,
   video: {
@@ -226,6 +231,16 @@ export default {
   },
 
   methods: {
+      test(){
+  exec('ls', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`exec error: ${error}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+    console.error(`stderr: ${stderr}`);
+  });
+},
     clickExit(){
       this.sendMessage('bye');
       this.$router.push("/");
