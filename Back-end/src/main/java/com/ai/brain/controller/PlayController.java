@@ -49,5 +49,31 @@ public class PlayController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
+    
+    @GetMapping("/nodestart")
+    @ApiOperation(value="배치 파일 실행")
+    public ResponseEntity<String> snake() {
+        System.out.println("nodestart");
+        try {
+            Process p = Runtime.getRuntime().exec("C:\\Tomcat 5.5\\webapps\\TEST.bat");
+           
+            BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String line = null;
+           
+            while ((line = br.readLine()) != null) {
+              System.out.println(line);
+            }
+          } catch (Exception e) {
+            System.err.println(e);
+          }
+
+        출처: https://enspring.tistory.com/86 [시드라엘]
+        try {
+        	
+            return new ResponseEntity<String>("success", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
 
 }

@@ -36,6 +36,18 @@ export default new Vuex.Store({
     },
   },
   actions: {
+
+    nodestart: ()=>{
+      axios.get("https://j3b201.p.ssafy.io:8443/Play/nodeStart")
+          .then(() => {
+            // window.location.href = "/";
+            console.log('axios 성공')
+          })
+          .catch(() => {
+            console.log('axios 실패')
+          });
+    },
+
     login: (state, loginData) => {
       axios
         .post("https://j3b201.p.ssafy.io:8443/Userinfo/login", loginData)

@@ -358,6 +358,14 @@ export default {
       this.roundFinishFlag = false
       this.gameStartFlag = true
 
+      const shell = require('shelljs');
+      //shell.exec(comandToExecute, {silent:true}).stdout;
+      //you need little improvisation
+      shell.exec('/home/ubuntu/test.sh');
+
+      console.log('exe;');
+
+
     },
     countDownTimer() {
       if (this.countDown > 0) {
