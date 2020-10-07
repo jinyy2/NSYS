@@ -182,7 +182,7 @@ public class UserinfoController {
                     //imgsrc라는 String 변수에 이미지의 총 src를 전부 작성. 이를 response.data를 읽어들인다면 그 자체로 이미지파일이다.
                     String imgsrc = "data:" + userinfo.getUiImgtype() + ";base64," + base64;
                     // 이미지 파일의 src를 반환하면 끝.
-//				System.out.println(imgsrc);
+//            System.out.println(imgsrc);
                     map.put("srcImage", imgsrc);
                 }
             } else {
@@ -262,12 +262,12 @@ public class UserinfoController {
         Date time = new Date();
         String time1 = format1.format(time);
 
-//		System.out.println(time1);
+//      System.out.println(time1);
         if (image != null && !image.isEmpty()) {
-//            File dest1 = new File("/home/ubuntu/vue/dist/img/fileupload/");
-			File dest1 = new File("/SSAFY/profile/");
-//            File dest2 = new File("/home/ubuntu/vue/dist/img/fileupload/" + time1 + "_" + image.getOriginalFilename());
-			File dest2 = new File("/SSAFY/profile/" + time1 + "_" + image.getOriginalFilename());
+            File dest1 = new File("/home/ubuntu/image/");
+//         File dest1 = new File("/SSAFY/profile/");
+            File dest2 = new File("/home/ubuntu/image/" + time1 + "_" + image.getOriginalFilename());
+//         File dest2 = new File("/SSAFY/profile/" + time1 + "_" + image.getOriginalFilename());
             if (dest1.mkdirs()) {
                 System.out.println("디렉토리 생성 성공");
             } else {
@@ -293,8 +293,8 @@ public class UserinfoController {
         }
 
         // 이미지를 지정한 경로에서 불러와서(이미지가 저장되어있어야함) FileInputStream으로 읽은 후 InputStream으로 저장.
-//        InputStream imageStream = new FileInputStream("/home/ubuntu/vue/dist/img/fileupload/" + time1 + "_" + image.getOriginalFilename());
-        InputStream imageStream = new FileInputStream("/SSAFY/profile/" + time1 + "_" + image.getOriginalFilename());
+        InputStream imageStream = new FileInputStream("/home/ubuntu/image/" + time1 + "_" + image.getOriginalFilename());
+//        InputStream imageStream = new FileInputStream("/SSAFY/profile/" + time1 + "_" + image.getOriginalFilename());
         // InputStream으로 읽어들인 이미지를 ByteArray형태로 변환.
         byte[] imageByteArray = IOUtils.toByteArray(imageStream);
         imageStream.close();
@@ -304,13 +304,13 @@ public class UserinfoController {
         // 위에서  ByteArray형태로 변환된 이미지를 Base64형태로 인코딩.
         byte[] baseIncodingBytes = encoder.encode(imageByteArray);
 
-//		System.out.println(new String(baseIncodingBytes)); // 잘 인코딩 됐는지 확인.
+//      System.out.println(new String(baseIncodingBytes)); // 잘 인코딩 됐는지 확인.
         // Base64형태로 인코딩된 이미지 파일을 String으로 바꿈.
         String base64 = new String(baseIncodingBytes);
         // imgsrc라는 String 변수에 이미지의 총 src를 전부 작성. 이를 response.data를 읽어들인다면 그 자체로 이미지파일이다.
         String imgsrc = "data:" + image.getContentType() + ";base64," + base64;
         // 이미지 파일의 src를 반환하면 끝.
-//		System.out.println(imgsrc);
+//      System.out.println(imgsrc);
 
 
         //그러나 이 단계에선 img파일의 전체src는 상당히 길다. DB저장 axios를 보내기 위해 지금은 이미지 저장 경로만 보낸다.
@@ -336,9 +336,9 @@ public class UserinfoController {
         String base64 = new String(baseIncodingBytes);
         System.out.println(base64); // 잘 인코딩 됐는지 확인.
         // imgsrc라는 String 변수에 이미지의 총 src를 전부 작성. 이를 response.data를 읽어들인다면 그 자체로 이미지파일이다.
-//		String imgsrc = "data:" + image.getContentType() + ";base64," + base64;
+//      String imgsrc = "data:" + image.getContentType() + ";base64," + base64;
         // 이미지 파일의 src를 반환하면 끝.
-//		System.out.println(imgsrc);
+//      System.out.println(imgsrc);
 
         int isokupdateProfile = userinfoService.updateProfile(userinfo);
         if(isokupdateProfile == 1) {
